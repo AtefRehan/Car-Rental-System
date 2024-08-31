@@ -1,5 +1,8 @@
 package com.example.car.rental.system.entity;
 
+import com.example.car.rental.system.enums.AvailabilityStatusType;
+import com.example.car.rental.system.enums.FuelType;
+import com.example.car.rental.system.enums.TransmissionType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,13 +35,16 @@ public class Car {
     private double pricePerDay;
 
     @Column(nullable = false)
-    private String availabilityStatus;
+    @Enumerated(EnumType.STRING)
+    private AvailabilityStatusType availabilityStatus;
 
     @Column(nullable = false)
-    private String fuelType;
+    @Enumerated(EnumType.STRING)
+    private FuelType fuelType;
 
     @Column(nullable = false)
-    private String transmission;
+    @Enumerated(EnumType.STRING)
+    private TransmissionType transmission;
 
     @Column(nullable = false)
     private int seatingCapacity;
