@@ -20,7 +20,7 @@ CREATE TABLE `Car`
     `year`                INT                NOT NULL,
     `vin`                 VARCHAR(50) UNIQUE NOT NULL,
     `price_per_day`       DECIMAL(10, 2)     NOT NULL,
-    `availability_status` VARCHAR(50) NOT NULL,
+    `availability_status` VARCHAR(255) NOT NULL,
     `fuel_type`           VARCHAR(50) NOT NULL,
     `transmission`        VARCHAR(50) NOT NULL,
     `seating_capacity`    INT                NOT NULL,
