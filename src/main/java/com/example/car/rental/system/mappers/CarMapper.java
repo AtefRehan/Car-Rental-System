@@ -36,4 +36,20 @@ public class CarMapper {
         return carDto;
     }
 
+    public static Car toEntity(CarDto carDto) {
+        Car car = new Car();
+        car.setId(carDto.getId());
+        car.setBrand(carDto.getBrand());
+        car.setModel(carDto.getModel());
+        car.setColor(carDto.getColor());
+        car.setYear(carDto.getYear());
+        car.setVin(carDto.getVin());
+        car.setAvailabilityStatus(carDto.getAvailabilityStatus());
+        car.setPricePerDay(carDto.getPricePerDay());
+        car.setSeatingCapacity(carDto.getSeatingCapacity());
+        car.setTransmission(carDto.getTransmissionType());
+        car.setFuelType(carDto.getFuelType());
+        return car;
+    }
+
 }
