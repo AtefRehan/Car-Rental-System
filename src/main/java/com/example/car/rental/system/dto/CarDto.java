@@ -1,8 +1,8 @@
 package com.example.car.rental.system.dto;
 
-import com.example.car.rental.system.enums.AvailabilityStatusType;
-import com.example.car.rental.system.enums.FuelType;
-import com.example.car.rental.system.enums.TransmissionType;
+import com.example.car.rental.system.enums.car.AvailabilityStatusType;
+import com.example.car.rental.system.enums.car.FuelType;
+import com.example.car.rental.system.enums.car.TransmissionType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

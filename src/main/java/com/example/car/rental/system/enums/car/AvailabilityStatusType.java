@@ -1,4 +1,4 @@
-package com.example.car.rental.system.enums;
+package com.example.car.rental.system.enums.car;
 
 public enum AvailabilityStatusType {
     AVAILABLE,

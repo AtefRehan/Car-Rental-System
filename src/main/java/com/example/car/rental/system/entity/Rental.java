@@ -1,5 +1,6 @@
 package com.example.car.rental.system.entity;
 
+import com.example.car.rental.system.enums.rental.RentalStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +34,8 @@ public class Rental {
     private Date rentalEndDate;
 
     @Column(nullable = false)
-    private String rentalStatus;
+    @Enumerated(EnumType.STRING)
+    private RentalStatus rentalStatus;
 
     @Column(nullable = false)
     private double totalAmount;
