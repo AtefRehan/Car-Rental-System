@@ -1,9 +1,10 @@
-package com.example.car.rental.system.service;
+package com.example.car.rental.system.service.ServiceImpl;
 
 import com.example.car.rental.system.dto.CarDto;
 import com.example.car.rental.system.entity.Car;
 import com.example.car.rental.system.mappers.CarMapper;
 import com.example.car.rental.system.repository.CarRepository;
+import com.example.car.rental.system.service.CarService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,13 +83,15 @@ public class CarServiceImpl implements CarService {
     @Override
     public void save(CarDto carDto) {
         carRepository.save(CarMapper.toEntity(carDto));
-//        CarMapper.toEntity(carDto);
     }
 
     @Override
     public void delete(Car car) {
         carRepository.delete(car);
     }
-}
 
+
+
+
+}
 

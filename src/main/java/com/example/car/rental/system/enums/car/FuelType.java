@@ -1,4 +1,4 @@
-package com.example.car.rental.system.enums;
+package com.example.car.rental.system.enums.car;
 
 public enum FuelType {
     FUEL_80,

@@ -46,4 +46,5 @@ public class CarRestController {
         CarDto carToDelete = carService.findById(id);
         carService.delete(CarMapper.toEntity(carToDelete));
     }
+
 }

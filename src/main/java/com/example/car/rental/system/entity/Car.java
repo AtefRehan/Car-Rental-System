@@ -1,8 +1,8 @@
 package com.example.car.rental.system.entity;
 
-import com.example.car.rental.system.enums.AvailabilityStatusType;
-import com.example.car.rental.system.enums.FuelType;
-import com.example.car.rental.system.enums.TransmissionType;
+import com.example.car.rental.system.enums.car.AvailabilityStatusType;
+import com.example.car.rental.system.enums.car.FuelType;
+import com.example.car.rental.system.enums.car.TransmissionType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(nullable = false)
     private String brand;
