@@ -9,8 +9,8 @@ import java.util.List;
 @Service
 public interface CarService {
     List<CarDto> findAll();
-    CarDto findById(int id);
-    CarDto update(int id,CarDto carDto);
-    void save(CarDto carDto);
+    CarDto findById(Long id);
+    CarDto update(Long id,CarDto carDto);
+    void Add(CarDto carDto);
     void delete(Car car);
 }

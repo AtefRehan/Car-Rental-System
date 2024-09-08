@@ -1,7 +1,6 @@
 package com.example.car.rental.system.rest;
 
 import com.example.car.rental.system.dto.CarDto;
-import com.example.car.rental.system.entity.Car;
 import com.example.car.rental.system.mappers.CarMapper;
 import com.example.car.rental.system.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,23 +25,23 @@ public class CarRestController {
     }
 
     @PostMapping("/car")
-    CarDto save(@RequestBody CarDto carDto) {
-        carService.save(carDto);
+    CarDto Add(@RequestBody CarDto carDto) {
+        carService.Add(carDto);
         return carDto;
     }
 
     @GetMapping("/car/{id}")
-    CarDto getById(@PathVariable int id) {
+    CarDto getById(@PathVariable Long id) {
         return carService.findById(id);
     }
 
     @PutMapping("/car/{id}")
-    CarDto update(@RequestBody CarDto carDto,@PathVariable int id) {
+    CarDto update(@RequestBody CarDto carDto,@PathVariable Long id) {
         return carService.update(id,carDto);
     }
 
     @DeleteMapping("/car/{id}")
-    void delete(@PathVariable int id) {
+    void delete(@PathVariable Long id) {
         CarDto carToDelete = carService.findById(id);
         carService.delete(CarMapper.toEntity(carToDelete));
     }

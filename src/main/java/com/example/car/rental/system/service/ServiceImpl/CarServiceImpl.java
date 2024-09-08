@@ -2,12 +2,15 @@ package com.example.car.rental.system.service.ServiceImpl;
 
 import com.example.car.rental.system.dto.CarDto;
 import com.example.car.rental.system.entity.Car;
+import com.example.car.rental.system.exception.handling.BaseException;
+import com.example.car.rental.system.exception.handling.enums.ErrorCode;
 import com.example.car.rental.system.mappers.CarMapper;
 import com.example.car.rental.system.repository.CarRepository;
 import com.example.car.rental.system.service.CarService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,18 +33,19 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public CarDto findById(int id) {
-        Optional<Car> car = carRepository.findById(id);
-        return CarMapper.toDto(car.get());
+    public CarDto findById(Long id) {
+        Car car = carRepository.findById(id)
+                .orElseThrow(() -> createNotFoundException(id));
+        return CarMapper.toDto(car);
     }
 
 
     @Transactional
     @Override
-    public CarDto update(int id, CarDto carDto) {
+    public CarDto update(Long id, CarDto carDto) {
         // Retrieve the car by ID, or throw an exception if not found
         Car existingCar = carRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Car with ID " + id + " not found"));
+                .orElseThrow(() -> createNotFoundException(id));
 
         // Update the fields of the existing car entity with the values from the DTO
         existingCar.setBrand(carDto.getBrand());
@@ -59,38 +63,38 @@ public class CarServiceImpl implements CarService {
 
         return CarMapper.toDto(updatedCar);
     }
-//    public CarDto update(int id, CarDto car) {
-////        Optional<CarD> existCar = carRepository.findById(id);
-//        Car existingBook = carRepository.findById(id)
-//                .orElseThrow(() -> createNotFoundException(id));
-//
-//        existCar.get().setBrand(car.getBrand());
-//        existCar.get().setModel(car.getModel());
-//        existCar.get().setYear(car.getYear());
-//        existCar.get().setColor(car.getColor());
-//        existCar.get().setVin(car.getVin());
-//        existCar.get().setAvailabilityStatus(car.getAvailabilityStatus());
-//        existCar.get().setPricePerDay(car.getPricePerDay());
-//        existCar.get().setFuelType(car.getFuelType());
-//        existCar.get().setTransmission(car.getTransmission());
-//        existCar.get().setSeatingCapacity(car.getSeatingCapacity());
-//        existCar.get().setColor(car.getColor());
-//        return carRepository.save(CarMapper.toEntity(existCar));
-//        return car;
-//
-//    }
 
+    @Transactional
     @Override
-    public void save(CarDto carDto) {
+    public void Add(CarDto carDto) {
+        System.out.println("Adding Car ...");
+        validateCarUniqueness(carDto.getVin());
         carRepository.save(CarMapper.toEntity(carDto));
+
     }
 
+    @Transactional
     @Override
     public void delete(Car car) {
+        System.out.println("Deleting car " + car.getVin());
         carRepository.delete(car);
     }
 
 
+    //Validations
+    private void validateCarUniqueness(String vin) {
+        if (carRepository.existsCarByVin(vin)) {
+            throw BaseException.builder()
+                    .errorCode(ErrorCode.CAR_ALREADY_EXIST)
+                    .details("A Car With Vin " + vin + " Already Exists!")
+                    .httpStatus(HttpStatus.CONFLICT)
+                    .build();
+        }
+    }
+
+    private BaseException createNotFoundException(Long id) {
+        return new BaseException(ErrorCode.ID_NOT_FOUND,HttpStatus.NOT_FOUND,"Car with ID " + id + " Not Found!");
+    }
 
 
 }
