@@ -2,15 +2,13 @@ package com.example.car.rental.system.mappers;
 
 import com.example.car.rental.system.dto.CarDto;
 import com.example.car.rental.system.entity.Car;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 public class CarMapper {
-
-    private CarMapper() {
-    }
-
 
     public static List<CarDto> toDtoList(List<Car> cars) {
         List<CarDto> carDtos = new ArrayList<>();

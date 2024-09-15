@@ -7,14 +7,12 @@ import com.example.car.rental.system.exception.handling.enums.ErrorCode;
 import com.example.car.rental.system.mappers.CarMapper;
 import com.example.car.rental.system.repository.CarRepository;
 import com.example.car.rental.system.service.CarService;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CarServiceImpl implements CarService {

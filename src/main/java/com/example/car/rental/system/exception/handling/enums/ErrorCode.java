@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode {
     CAR_ALREADY_EXIST("car exist","The Car Vin Already Exists"),
+    USER_ALREADY_EXIST("USER exist","The User Email Exists"),
     ID_NOT_FOUND("not.exist","ID Not Found"),
     INTERNAL_SERVER_ERROR("internal.error", "An internal server error occurred");
 
